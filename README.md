@@ -41,7 +41,7 @@
 
 ### ***Live Demo***
 
-🌐 **Web Application:** [Gymsense AI](https://guileless-haupia-02e3e4.netlify.app)
+🌐 **Web Application:** [Gymsense AI](https://sparkly-wisp-176a63.netlify.app)
 
 ---
 

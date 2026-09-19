@@ -1,3 +1,4 @@
+import json
 import os
 import time
 from pathlib import Path
@@ -37,6 +38,57 @@ def resolve_app_path(*parts):
         return src_candidate
 
     return candidate
+
+
+# WebRTC / ICE configuration
+DEFAULT_STUN_SERVERS = [
+    {"urls": ["stun:stun.l.google.com:19302"]},
+    {"urls": ["stun:stun1.l.google.com:19302"]},
+    {"urls": ["stun:stun.cloudflare.com:3478"]},
+]
+
+PUBLIC_TURN_FALLBACK = {
+    "urls": [
+        "turn:openrelay.metered.ca:80",
+        "turn:openrelay.metered.ca:443",
+        "turn:openrelay.metered.ca:443?transport=tcp",
+        "turns:openrelay.metered.ca:443?transport=tcp",
+    ],
+    "username": "openrelayproject",
+    "credential": "openrelayproject",
+}
+
+
+HARDCODED_TURN_USERNAME = os.getenv("MY_TURN_USERNAME")
+HARDCODED_TURN_CREDENTIAL = os.getenv("MY_TURN_CREDENTIAL")
+
+MY_TURN_URLS = [
+    "turn:global.relay.metered.ca:80",
+    "turn:global.relay.metered.ca:80?transport=tcp",
+    "turn:global.relay.metered.ca:443",
+    "turns:global.relay.metered.ca:443?transport=tcp",
+]
+
+
+def get_webrtc_ice_servers():
+    servers = list(DEFAULT_STUN_SERVERS)
+
+    turn_user = (os.getenv("MY_TURN_USERNAME") or HARDCODED_TURN_USERNAME).strip()
+    turn_cred = (os.getenv("MY_TURN_CREDENTIAL") or HARDCODED_TURN_CREDENTIAL).strip()
+
+    if turn_user and turn_cred:
+        # tumhara apna Metered TURN
+        servers.append(
+            {
+                "urls": MY_TURN_URLS,
+                "username": turn_user,
+                "credential": turn_cred,
+            }
+        )
+    else:
+        # credentials nahi mile -> public TURN fallback
+        servers.append(PUBLIC_TURN_FALLBACK)
+    return servers
 
 
 # main window function
@@ -244,10 +296,11 @@ def main():
             key="exercise-analysis",
             mode=WebRtcMode.SENDRECV,
             video_processor_factory=VideoProcessorClass,
-            rtc_configuration={
-                "iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]
+            rtc_configuration={"iceServers": get_webrtc_ice_servers()},
+            media_stream_constraints={
+                "video": {"facingMode": "user"},
+                "audio": False,
             },
-            media_stream_constraints={"video": True, "audio": False},
             async_processing=True,
         )
         sync_metrics_update(context)
@@ -287,6 +340,7 @@ def main():
             st.table(agg_df, border="horizontal")
         else:
             st.info("No workout history found.")
+
 
 if __name__ == "__main__":
     main()
