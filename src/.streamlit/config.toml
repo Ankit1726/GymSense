@@ -1,0 +1,20 @@
+[theme]
+base = "dark"
+primaryColor = "#C9A227"
+backgroundColor = "#0B0912"
+secondaryBackgroundColor = "#161222"
+textColor = "#F3ECDC"
+font = "sans serif"
+
+[theme.sidebar]
+backgroundColor = "#0F0C18"
+secondaryBackgroundColor = "#1C1730"
+textColor = "#F3ECDC"
+
+[server]
+enableCORS = false
+enableXsrfProtection = true
+
+[client]
+toolbarMode = "minimal"
+showSidebarNavigation = true

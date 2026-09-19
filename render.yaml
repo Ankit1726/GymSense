@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: gymsense
+    runtime: docker
+    plan: free
+    healthCheckPath: /_stcore/health
+    envVars:
+      - key: GROQ_API_KEY
+        sync: false
+      - key: ICE_SERVERS
+        sync: false
+      - key: TURN_SERVER_URL
+        sync: false
+      - key: TURN_USERNAME
+        sync: false
+      - key: TURN_CREDENTIAL
+        sync: false

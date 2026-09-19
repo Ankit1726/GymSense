@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI GYM Trainer🏋️‍♂️</title>
+  <meta name="description"
+    content="Real-time AI gym coach. Your form, analyzed and corrected in milliseconds using just your phone or webcam." />
+  <meta name="theme-color" content="#0a0a0a" />
+  <meta name="color-scheme" content="dark" />
+  <link rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230a0a0a'/%3E%3Cpath d='M8 25l8-9-4-8' fill='none' stroke='%23f5a623' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='22' cy='8' r='3.2' fill='%2300d4ff'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;700&family=Instrument+Serif:ital,wght@0,400;1,400&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body id="top">
+  <div class="grid-overlay" aria-hidden="true"></div>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-logo">
+      <span class="logo-bracket">(</span>AI GYM COACH<span class="logo-bracket">)</span>
+    </div>
+    <div class="nav-links">
+      <a href="#visuals">Gallery</a>
+      <a href="#demo">Demo</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-tag">
+      <span class="dot"></span>
+      <span>AI-POWERED · REAL-TIME · GYM COACH</span>
+    </div>
+
+    <h1 class="hero-title">
+      <span class="line-one">REAL-TIME</span>
+      <span class="line-two">AI GYM<br />COACH</span>
+    </h1>
+
+    <p class="hero-sub">
+      Your form. Analyzed. Corrected. In milliseconds.<br />
+      Computer vision that watches every rep and tells you exactly what to fix.
+    </p>
+
+    <div class="hero-cta-row">
+      <a href="https://gymsense-snmc.onrender.com" target="_blank" rel="noopener noreferrer" class="btn-primary">
+        <span>Try it live</span>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+            stroke-linejoin="round" />
+        </svg>
+      </a>
+      <a href="#demo-video" class="btn-ghost">WATCH DEMO ↓</a>
+    </div>
+
+    <div class="metrics-strip">
+      <div class="metric">
+        <span class="metric-val">100<span class="unit">ms</span></span>
+        <span class="metric-label">Avg Latency</span>
+      </div>
+      <div class="metric-divider"></div>
+      <div class="metric">
+        <span class="metric-val">5<span class="unit">+</span></span>
+        <span class="metric-label">Exercises</span>
+      </div>
+      <div class="metric-divider"></div>
+      <div class="metric">
+        <span class="metric-val">95<span class="unit">%</span></span>
+        <span class="metric-label">Form Accuracy</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- VISUALS -->
+  <section class="visuals" id="visuals">
+    <div class="section-header center-header">
+      <span class="section-tag">// GALLERY</span>
+      <h2 class="section-title">Built for<br /><em>real athletes</em></h2>
+    </div>
+
+    <div class="card-grid" id="cardGrid"></div>
+  </section>
+
+  <!-- DEMO -->
+  <section class="demo" id="demo">
+    <div class="section-header center-header">
+      <span class="section-tag">// DEMO</span>
+      <h2 class="section-title">See it in<br /><em>action</em></h2>
+      <p class="section-desc">
+        Watch the AI detect and correct form errors in real-time. No hardware
+        required — just your phone or webcam.
+      </p>
+    </div>
+
+    <div class="video-wrapper" id="demo-video">
+      <div class="video-glow"></div>
+      <div class="video-container">
+        <div class="video-corner tl"></div>
+        <div class="video-corner tr"></div>
+        <div class="video-corner bl"></div>
+        <div class="video-corner br"></div>
+        <div class="video-status">
+          <span class="dot pulse-dot"></span>
+          <span>DEMO</span>
+        </div>
+
+        <!-- Your real demo clip. If videos/video.mp4 exists it replaces the panel below automatically. -->
+        <video id="demoVideo" controls playsinline preload="metadata" hidden>
+          <source src="videos/video.mp4" type="video/mp4" />
+        </video>
+
+        <div class="mock-demo" id="mockDemo">
+          <div class="mock-demo-grid">
+            <div class="mock-feed" id="mockFeed"></div>
+            <div class="mock-side">
+              <div class="hud-box">
+                <span class="hud-label">Squat · Reps</span>
+                <div class="hud-big" id="repCount">12</div>
+              </div>
+              <div class="hud-box">
+                <span class="hud-label">Knee Angle</span>
+                <div class="hud-big"><span id="angleVal">92</span><small>°</small></div>
+                <div class="bar-track">
+                  <div class="bar-fill"></div>
+                </div>
+              </div>
+              <div class="hud-box">
+                <span class="hud-label">Form Feedback</span>
+                <div class="cue-line"><b>▸</b><span id="cueText">Depth reached — good rep</span></div>
+                <div class="cue-line" style="margin-top:6px"><b>▸</b><span>Back angle within safe range</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="feature-row">
+      <div class="feature">
+        <span class="feature-icon">⬡</span>
+        <strong>Pose Detection</strong>
+        <p>33 body landmarks tracked per frame with MediaPipe BlazePose.</p>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">⬡</span>
+        <strong>Audio Feedback</strong>
+        <p>Spoken corrections the moment your form drifts out of range.</p>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">⬡</span>
+        <strong>Rep Counter</strong>
+        <p>State-machine rep detection that ignores partial reps.</p>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">⬡</span>
+        <strong>Works in Real-time</strong>
+        <p>Runs at 25–30 FPS on an ordinary laptop webcam. No GPU.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER / CONTACT -->
+  <footer class="footer" id="contact">
+    <div class="footer-brand">
+      <span class="logo-bracket">(</span>AI GYM COACH<span class="logo-bracket">)</span>
+    </div>
+
+    <nav class="footer-links" aria-label="Footer">
+      <a href="#visuals">Gallery</a>
+      <a href="#demo">Demo</a>
+      <a class="live" href="https://gymsense-snmc.onrender.com" target="_blank" rel="noopener noreferrer">Try it
+        live</a>
+      <a href="#top">Back to top</a>
+    </nav>
+
+    <div class="footer-credit">
+      <span>Made with</span>
+      <span class="heart" role="img" aria-label="love">❤️</span>
+      <span>by</span>
+      <span class="name">Ankit</span>
+    </div>
+
+    <p class="footer-copy">
+      © 2026 <strong>AI GYM Trainer</strong>
+    </p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

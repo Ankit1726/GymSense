@@ -1,0 +1,176 @@
+## Project Setup 
+--> pytohn -m venv venv 
+--> .\venv\Scripts\Activate
+--> pip install uv 
+--> add requirements.txt file
+--> uv pip install -r requirements.txt
+
+
+PROJECT:
+Real-Time AI Gym Coach
+
+CORE IDEA:
+A webcam-based real-time exercise form analysis system using MediaPipe BlazePose, OpenCV, NumPy, Python and Streamlit.
+
+1. PROJECT OBJECTIVE
+The main objective is to build a real-time AI Gym Coach that uses a normal webcam to analyze exercise form, detect body landmarks, calculate joint angles, evaluate exercise form, count valid repetitions, and provide visual and spoken feedback.
+
+2. PROBLEM SOLVED
+Many people exercise without supervision and may perform exercises incorrectly. Fitness videos demonstrate exercises but do not analyze the user's own movement. This project uses computer vision to observe posture and provide real-time form feedback.
+
+3. COMPLETE WORKFLOW
+Webcam
+  ->
+OpenCV frame capture
+  ->
+MediaPipe BlazePose
+  ->
+33 body landmarks
+  ->
+Joint-angle calculation
+  ->
+Exercise-specific rule checking
+  ->
+Form evaluation
+  ->
+Repetition counting
+  ->
+Visual + spoken feedback
+
+This process repeats for every frame during the workout.
+
+4. TECHNOLOGY STACK
+Python       : Main programming language
+OpenCV       : Webcam capture, image processing and visual overlays
+MediaPipe    : Human pose estimation
+NumPy        : Numerical and vector/angle calculations
+Frontend     : Streamllit, HTML & CSS
+pyttsx3/gTTS : Spoken feedback
+
+5. MEDIAPIPE (Pose Landmarker)
+MediaPipe Pose Landmarker detects 33 body landmarks such as shoulders, elbows, wrists, hips, knees and ankles. These landmarks are used to calculate joint angles and evaluate exercise movements.
+Link 1👉 https://developers.google.com/edge/mediapipe/solutions/vision/pose_landmarker
+Link_2👉 https://developers.google.com/edge/mediapipe/solutions/vision/pose_landmarker/python#live-stream
+
+6. JOINT ANGLE CALCULATION
+Three landmarks A, B and C are used, where B is the target joint.
+
+theta = |atan2(Cy-By, Cx-Bx) - atan2(Ay-By, Ax-Bx)|
+
+If theta is greater than 180 degrees:
+theta = 360 - theta
+
+atan2 is useful because it handles different vector directions/quadrants and avoids slope-division problems.
+
+7. REPETITION COUNTING
+The system uses a two-state machine:
+UP -> DOWN -> UP
+
+A repetition is counted only after the DOWN -> UP transition is completed. This helps prevent incomplete movements or half-reps from being counted as full repetitions.
+
+8. SUPPORTED EXERCISES
+1. Squat
+2. Push-up
+3. Bicep curl
+4. Overhead press
+5. Plank
+
+Each exercise has its own angle rules and form/repetition logic.
+
+9. FORM DETECTION
+The system compares detected joint angles with exercise-specific thresholds and movement conditions.
+
+Examples of feedback:
+- Go deeper
+- Keep your back straight
+- Push hips back
+
+10. REAL-TIME FEEDBACK
+Visual feedback includes the detected pose and relevant exercise information on the video frame.
+
+Spoken feedback is also provided. Audio is throttled using a cooldown so the same message is not repeatedly spoken on every bad frame.
+
+11. SQUAT LOGIC
+For squats, the system checks conditions such as knee angle, back angle and knee position.
+
+- Knee angle below 90 degrees indicates full depth.
+- Knee angle around 90 to 140 degrees can trigger "Go deeper".
+- Back-angle conditions can trigger "Keep your chest up".
+- Knee-position conditions can trigger "Push hips back".
+- Knee angle greater than 160 degrees during the return phase completes the repetition.
+
+12. PERFORMANCE
+Reported project performance:
+- 600 labelled validation repetitions
+- 120 repetitions per exercise
+- 95% reported mean accuracy
+- Approximately 100 ms reported end-to-end latency per frame
+- Approximately 28 FPS
+- 720p webcam stream
+- CPU-only processing
+
+13. INDIVIDUAL ACCURACY
+Squat          : 96%
+Push-up        : 94%
+Bicep curl     : 95%
+Overhead press : 92%
+Plank          : 97%
+
+Mean accuracy  : 95%
+
+14. MAJOR CHALLENGES AND SOLUTIONS
+Landmark jitter:
+Solution -> Moving average over the last five frames.
+
+Audio spam:
+Solution -> Cooldown timer and approximately one cue per repetition.
+
+Camera-angle drift:
+Solution -> Torso-length normalization and poor-framing warnings.
+
+Rendering latency:
+Solution -> Render only joints required by the active exercise.
+
+15. LIMITATIONS
+- Dependence on camera positioning
+- Possible landmark occlusion
+- Fixed hand-tuned thresholds
+
+16. FUTURE IMPROVEMENTS
+- Mobile application
+- On-device inference using TensorFlow Lite
+- More exercises such as deadlift, lunge, row and bench press
+- User progress tracking
+- Learned scoring using labelled repetitions
+- Personalization of safe ranges according to user mobility
+
+17. MY CONTRIBUTION
+MediaPipe is used for landmark extraction, but the application logic built around those landmarks is the project's implementation.
+
+My contribution includes:
+- Exercise-specific angle rules
+- Repetition state machine
+- Form scoring
+- Feedback logic
+- Feedback throttling
+- Webcam pipeline integration
+- Visualization
+- Streamlit interface
+
+👉 30-SECOND VIVA INTRODUCTION
+"My project is a Real-Time AI Gym Coach. It uses a normal webcam to analyze exercise form without wearable sensors. OpenCV captures the video, MediaPipe BlazePose detects 33 body landmarks, and NumPy-based geometry calculates relevant joint angles. These angles are checked against exercise-specific rules to score form and count valid repetitions. The system then gives visual and spoken feedback in real time. It currently supports squat, push-up, bicep curl, overhead press and plank, with a reported 95% mean accuracy."
+
+19. TOP 10 POINTS TO MEMORIZE
+1. Project: Real-Time AI Gym Coach
+2. Input: Webcam
+3. Pose model: MediaPipe BlazePose
+4. Landmarks: 33
+5. Video processing: OpenCV
+6. Mathematics: NumPy + joint angles
+7. Rep counting: UP/DOWN state machine
+8. Form evaluation: Exercise-specific thresholds
+9. Feedback: Visual + voice
+10. Reported mean accuracy: 95%
+
+IMPORTANT VIVA KEYWORDS
+BlazePose, 33 landmarks, joint angle, atan2, threshold, state machine, repetition counting, real-time feedback, cooldown, 95% accuracy.
