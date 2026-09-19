@@ -30,7 +30,7 @@
 ***GymSense can detect body landmarks, calculate joint angles, identify exercise movement phases, count valid repetitions, track sets, save workout history, and optionally provide AI-generated voice coaching.***
 
 <p align="center">
-<a href="https://gymsense-snmc.onrender.com" target="_blank">
+<a href="https://gymsense-vkfb.onrender.com" target="_blank">
 <img src="https://img.shields.io/badge/🚀%20Live%20Demo-Visit%20GymSense-success?style=for-the-badge">
 </a>
 </p>
