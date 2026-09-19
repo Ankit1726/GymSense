@@ -58,7 +58,6 @@ PUBLIC_TURN_FALLBACK = {
     "credential": "openrelayproject",
 }
 
-
 HARDCODED_TURN_USERNAME = os.getenv("MY_TURN_USERNAME")
 HARDCODED_TURN_CREDENTIAL = os.getenv("MY_TURN_CREDENTIAL")
 
@@ -73,8 +72,10 @@ MY_TURN_URLS = [
 def get_webrtc_ice_servers():
     servers = list(DEFAULT_STUN_SERVERS)
 
-    turn_user = (os.getenv("MY_TURN_USERNAME") or HARDCODED_TURN_USERNAME).strip()
-    turn_cred = (os.getenv("MY_TURN_CREDENTIAL") or HARDCODED_TURN_CREDENTIAL).strip()
+    turn_user = (os.getenv("MY_TURN_USERNAME") or HARDCODED_TURN_USERNAME or "").strip()
+    turn_cred = (
+        os.getenv("MY_TURN_CREDENTIAL") or HARDCODED_TURN_CREDENTIAL or ""
+    ).strip()
 
     if turn_user and turn_cred:
         # tumhara apna Metered TURN
@@ -88,7 +89,15 @@ def get_webrtc_ice_servers():
     else:
         # credentials nahi mile -> public TURN fallback
         servers.append(PUBLIC_TURN_FALLBACK)
+
     return servers
+
+
+@st.cache_resource
+def _init_db_once():
+    """Run DB init only once per server process, not on every rerun."""
+    init_db()
+    return True
 
 
 # main window function
@@ -106,8 +115,8 @@ def main():
         str(resolve_app_path("src", "static", "AdobeClean.otf")), "AdobeClean"
     )
 
-    # initialise database
-    init_db()
+    # initialise database (cached, runs once)
+    _init_db_once()
 
     if not render_login_page():
         return
@@ -298,14 +307,19 @@ def main():
             video_processor_factory=VideoProcessorClass,
             rtc_configuration={"iceServers": get_webrtc_ice_servers()},
             media_stream_constraints={
-                "video": {"facingMode": "user"},
+                "video": {
+                    "facingMode": "user",
+                    "width": {"ideal": 640},
+                    "height": {"ideal": 480},
+                    "frameRate": {"ideal": 24, "max": 30},
+                },
                 "audio": False,
             },
             async_processing=True,
         )
         sync_metrics_update(context)
         if context.state.playing:
-            time.sleep(0.25)
+            time.sleep(0.5)
             st.rerun()
 
         inject_webrtc_styles()
