@@ -34,7 +34,6 @@
 <img src="https://img.shields.io/badge/🚀%20Live%20Demo-Visit%20GymSense-success?style=for-the-badge">
 </a>
 </p>
-
 </div>
 
 ---
