@@ -4,197 +4,308 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI GYM Trainer🏋️‍♂️</title>
+  <title>GymSense Smart AI </title>
   <meta name="description"
-    content="Real-time AI gym coach. Your form, analyzed and corrected in milliseconds using just your phone or webcam." />
-  <meta name="theme-color" content="#0a0a0a" />
+    content="GymSense watches your form through your camera and corrects it in real time. Pose detection, spoken feedback and rep counting, right in your browser." />
+  <meta name="theme-color" content="#0b1116" />
   <meta name="color-scheme" content="dark" />
+  <meta property="og:title" content="GymSense: real-time AI gym coach" />
+  <meta property="og:description" content="Your form, corrected mid-rep. No sensors, just your phone or webcam." />
+  <meta property="og:type" content="website" />
   <link rel="icon"
-    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230a0a0a'/%3E%3Cpath d='M8 25l8-9-4-8' fill='none' stroke='%23f5a623' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='22' cy='8' r='3.2' fill='%2300d4ff'/%3E%3C/svg%3E" />
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230b1116'/%3E%3Cpath d='M9 25l7-9-4-7' fill='none' stroke='%234be3ac' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='21' cy='9' r='3.2' fill='%234be3ac'/%3E%3C/svg%3E" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;700&family=Instrument+Serif:ital,wght@0,400;1,400&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;700;800&family=Instrument+Sans:wght@400;500;600&display=swap"
     rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+
+  <!-- Main stylesheet -->
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 
 <body id="top">
-  <div class="grid-overlay" aria-hidden="true"></div>
+  <a class="skip" href="#gallery">Skip to content</a>
 
   <!-- NAV -->
-  <nav class="nav">
-    <div class="nav-logo">
-      <span class="logo-bracket">(</span>AI GYM COACH<span class="logo-bracket">)</span>
-    </div>
-    <div class="nav-links">
-      <a href="#visuals">Gallery</a>
-      <a href="#demo">Demo</a>
-      <a href="#contact">Contact</a>
-    </div>
-  </nav>
-
-  <!-- HERO -->
-  <section class="hero" id="hero">
-    <div class="hero-tag">
-      <span class="dot"></span>
-      <span>AI-POWERED · REAL-TIME · GYM COACH</span>
-    </div>
-
-    <h1 class="hero-title">
-      <span class="line-one">REAL-TIME</span>
-      <span class="line-two">AI GYM<br />COACH</span>
-    </h1>
-
-    <p class="hero-sub">
-      Your form. Analyzed. Corrected. In milliseconds.<br />
-      Computer vision that watches every rep and tells you exactly what to fix.
-    </p>
-
-    <div class="hero-cta-row">
-      <a href="https://gymsense-smartai.streamlit.app" target="_blank" rel="noopener noreferrer" class="btn-primary">
-        <span>Try it live</span>
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-          <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#top" aria-label="GymSense home">
+        <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+          <path d="M9 25l7-9-4-7" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"
             stroke-linejoin="round" />
+          <circle cx="21" cy="9" r="3.2" fill="currentColor" />
         </svg>
+        <span>GymSense</span>
       </a>
-      <a href="#demo-video" class="btn-ghost">WATCH DEMO ↓</a>
+
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#gallery">Gallery</a>
+        <a href="#how">How it works</a>
+        <a href="#demo">Demo</a>
+      </nav>
+
+      <a class="btn btn-primary btn-sm" href="https://gymsense-smartai.streamlit.app" target="_blank"
+        rel="noopener noreferrer">Try it live</a>
     </div>
+  </header>
 
-    <div class="metrics-strip">
-      <div class="metric">
-        <span class="metric-val">100<span class="unit">ms</span></span>
-        <span class="metric-label">Avg Latency</span>
-      </div>
-      <div class="metric-divider"></div>
-      <div class="metric">
-        <span class="metric-val">5<span class="unit">+</span></span>
-        <span class="metric-label">Exercises</span>
-      </div>
-      <div class="metric-divider"></div>
-      <div class="metric">
-        <span class="metric-val">95<span class="unit">%</span></span>
-        <span class="metric-label">Form Accuracy</span>
-      </div>
-    </div>
-  </section>
+  <main>
+    <!-- HERO -->
+    <section class="hero" id="hero">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <h1>Your form, corrected mid&#8209;rep.</h1>
+          <p class="lead">
+            GymSense uses your camera to track every joint, count your reps and
+            tell you what to fix in about 100 milliseconds. No sensors, no
+            wearables.
+          </p>
 
-  <!-- VISUALS -->
-  <section class="visuals" id="visuals">
-    <div class="section-header center-header">
-      <span class="section-tag">// GALLERY</span>
-      <h2 class="section-title">Built for<br /><em>real athletes</em></h2>
-    </div>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="https://gymsense-smartai.streamlit.app" target="_blank"
+              rel="noopener noreferrer" id="cta-button">Try GymSense live</a>
+            <a class="btn btn-ghost" href="#demo">Watch the demo</a>
+          </div>
 
-    <div class="card-grid" id="cardGrid"></div>
-  </section>
-
-  <!-- DEMO -->
-  <section class="demo" id="demo">
-    <div class="section-header center-header">
-      <span class="section-tag">// DEMO</span>
-      <h2 class="section-title">See it in<br /><em>action</em></h2>
-      <p class="section-desc">
-        Watch the AI detect and correct form errors in real-time. No hardware
-        required — just your phone or webcam.
-      </p>
-    </div>
-
-    <div class="video-wrapper" id="demo-video">
-      <div class="video-glow"></div>
-      <div class="video-container">
-        <div class="video-corner tl"></div>
-        <div class="video-corner tr"></div>
-        <div class="video-corner bl"></div>
-        <div class="video-corner br"></div>
-        <div class="video-status">
-          <span class="dot pulse-dot"></span>
-          <span>DEMO</span>
+          <ul class="stats">
+            <li class="stat"><b>100 ms</b><span>average latency</span></li>
+            <li class="stat"><b>5+</b><span>exercises</span></li>
+            <li class="stat"><b>95%</b><span>form accuracy</span></li>
+          </ul>
         </div>
 
-        <!-- Your real demo clip. If videos/video.mp4 exists it replaces the panel below automatically. -->
-        <video id="demoVideo" controls playsinline preload="metadata" hidden>
-          <source src="videos/video.mp4" type="video/mp4" />
-        </video>
-
-        <div class="mock-demo" id="mockDemo">
-          <div class="mock-demo-grid">
-            <div class="mock-feed" id="mockFeed"></div>
-            <div class="mock-side">
-              <div class="hud-box">
-                <span class="hud-label">Squat · Reps</span>
-                <div class="hud-big" id="repCount">12</div>
-              </div>
-              <div class="hud-box">
-                <span class="hud-label">Knee Angle</span>
-                <div class="hud-big"><span id="angleVal">92</span><small>°</small></div>
-                <div class="bar-track">
-                  <div class="bar-fill"></div>
-                </div>
-              </div>
-              <div class="hud-box">
-                <span class="hud-label">Form Feedback</span>
-                <div class="cue-line"><b>▸</b><span id="cueText">Depth reached — good rep</span></div>
-                <div class="cue-line" style="margin-top:6px"><b>▸</b><span>Back angle within safe range</span></div>
-              </div>
+        <!-- Animated live-analysis panel (drawn by js/script.js) -->
+        <div class="coach" role="img"
+          aria-label="Animation of a squat with live form feedback. The first rep is flagged as too shallow, the second is marked as good depth.">
+          <div class="coach-top" aria-hidden="true">
+            <span class="live"><i></i>Live analysis</span>
+            <span>Squat</span>
+          </div>
+          <div class="coach-stage" aria-hidden="true">
+            <svg id="coach-svg"></svg>
+          </div>
+          <div class="coach-bottom" aria-hidden="true">
+            <div class="reps">
+              <b id="rep-count">0</b>
+              <span>reps counted</span>
+            </div>
+            <div class="cue" id="cue" data-state="track">
+              <b id="cue-title">Ready</b>
+              <span id="cue-text">Stand tall to begin.</span>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
 
-    <div class="feature-row">
-      <div class="feature">
-        <span class="feature-icon">⬡</span>
-        <strong>Pose Detection</strong>
-        <p>33 body landmarks tracked per frame with MediaPipe BlazePose.</p>
-      </div>
-      <div class="feature">
-        <span class="feature-icon">⬡</span>
-        <strong>Audio Feedback</strong>
-        <p>Spoken corrections the moment your form drifts out of range.</p>
-      </div>
-      <div class="feature">
-        <span class="feature-icon">⬡</span>
-        <strong>Rep Counter</strong>
-        <p>State-machine rep detection that ignores partial reps.</p>
-      </div>
-      <div class="feature">
-        <span class="feature-icon">⬡</span>
-        <strong>Works in Real-time</strong>
-        <p>Runs at 25–30 FPS on an ordinary laptop webcam. No GPU.</p>
-      </div>
-    </div>
-  </section>
+    <!-- GALLERY -->
+    <section class="section" id="gallery">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>See what the coach sees</h2>
+          <p>
+            Every frame is tracked joint by joint, so the feedback matches
+            what your body is actually doing, not what you think it is doing.
+          </p>
+        </div>
 
-  <!-- FOOTER / CONTACT -->
-  <footer class="footer" id="contact">
-    <div class="footer-brand">
-      <span class="logo-bracket">(</span>AI GYM COACH<span class="logo-bracket">)</span>
-    </div>
+        <!--
+            Put your screenshots in the IMGs folder as i1.png ... i6.png.
+            If an image is missing, a drawn skeleton is shown instead.
+          -->
+        <div class="gallery">
+          <figure class="shot s7">
+            <div class="shot-media">
+              <svg class="pose-art" data-pose="squat" data-flag="hip-knee" aria-hidden="true"></svg>
+              <img src="./IMGs/i1.png" alt="GymSense tracking squat depth with a joint overlay" loading="lazy"
+                decoding="async" />
+            </div>
+            <figcaption>Squat depth check</figcaption>
+          </figure>
 
-    <nav class="footer-links" aria-label="Footer">
-      <a href="#visuals">Gallery</a>
-      <a href="#demo">Demo</a>
-      <a class="live" href="https://gymsense-snmc.onrender.com" target="_blank" rel="noopener noreferrer">Try it
-        live</a>
+          <figure class="shot s5">
+            <div class="shot-media">
+              <svg class="pose-art" data-pose="deadlift" data-flag="shoulder-hip" aria-hidden="true"></svg>
+              <img src="./IMGs/i2.png" alt="GymSense flagging back angle during a deadlift" loading="lazy"
+                decoding="async" />
+            </div>
+            <figcaption>Deadlift back angle</figcaption>
+          </figure>
+
+          <figure class="shot s5">
+            <div class="shot-media">
+              <svg class="pose-art" data-pose="press" aria-hidden="true"></svg>
+              <img src="./IMGs/i3.png" alt="GymSense checking overhead press alignment" loading="lazy"
+                decoding="async" />
+            </div>
+            <figcaption>Overhead press alignment</figcaption>
+          </figure>
+
+          <figure class="shot s7">
+            <div class="shot-media">
+              <svg class="pose-art" data-pose="pushup" data-flag="shoulder-hip" aria-hidden="true"></svg>
+              <img src="./IMGs/i4.png" alt="GymSense tracking joints during a push-up" loading="lazy"
+                decoding="async" />
+            </div>
+            <figcaption>Live joint tracking</figcaption>
+          </figure>
+
+          <figure class="shot s6">
+            <div class="shot-media">
+              <svg class="pose-art" data-pose="lunge" aria-hidden="true"></svg>
+              <img src="./IMGs/i5.png" alt="GymSense counting reps during a lunge" loading="lazy" decoding="async" />
+            </div>
+            <figcaption>Automatic rep counter</figcaption>
+          </figure>
+
+          <figure class="shot s6">
+            <div class="shot-media">
+              <svg class="pose-art" data-pose="curl" data-flag="shoulder-elbow" aria-hidden="true"></svg>
+              <img src="./IMGs/i6.png" alt="GymSense giving spoken corrections during a curl" loading="lazy"
+                decoding="async" />
+            </div>
+            <figcaption>Spoken corrections</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="section" id="how">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>From camera to correction in three steps</h2>
+          <p>
+            GymSense runs in your browser. Nothing to install, nothing to
+            wear.
+          </p>
+        </div>
+
+        <ol class="steps">
+          <li>
+            <h3>Open GymSense</h3>
+            <p>
+              Allow camera access. A phone or a laptop webcam is all you need.
+            </p>
+          </li>
+          <li>
+            <h3>Choose a lift and start</h3>
+            <p>
+              Pick your exercise, step back until your whole body is in frame
+              and begin your set.
+            </p>
+          </li>
+          <li>
+            <h3>Follow the cues</h3>
+            <p>
+              The skeleton overlay, spoken corrections and rep counter update
+              with every rep.
+            </p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- DEMO -->
+    <section class="section" id="demo">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>See it in action</h2>
+          <p>
+            Watch GymSense detect and correct form errors in real time. No
+            extra hardware, just your phone or webcam.
+          </p>
+        </div>
+
+        <div class="video-frame" id="demo-video">
+          <video controls playsinline preload="metadata">
+            <source src="videos/video.mp4" type="video/mp4" />
+          </video>
+
+          <!-- Shown automatically if videos/video.mp4 can't be loaded -->
+          <div class="video-fallback" hidden>
+            <svg class="pose-art" data-pose="deadlift" aria-hidden="true"></svg>
+            <div class="video-fallback-body">
+              <p>The demo video isn't available right now.</p>
+              <a class="btn btn-primary" href="https://gymsense-smartai.streamlit.app" target="_blank"
+                rel="noopener noreferrer">Try GymSense live instead</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="section" id="features">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>What the coach does for you</h2>
+          <p>Four things, working together while you lift.</p>
+        </div>
+
+        <ul class="features">
+          <li class="feature">
+            <h3>Pose detection</h3>
+            <p>
+              Tracks your joints from any camera and draws them over your
+              body, so you can see your own form.
+            </p>
+          </li>
+          <li class="feature">
+            <h3>Audio feedback</h3>
+            <p>
+              Spoken cues tell you what to fix, so you never have to look at
+              the screen mid-set.
+            </p>
+          </li>
+          <li class="feature">
+            <h3>Rep counter</h3>
+            <p>
+              Counts every rep automatically so you can focus on the lift,
+              not on the number.
+            </p>
+          </li>
+          <li class="feature">
+            <h3>Real-time response</h3>
+            <p>
+              Feedback arrives in about 100 ms, fast enough to fix the rep
+              you're on.
+            </p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="section section-cta" id="start">
+      <div class="wrap">
+        <div class="cta">
+          <div>
+            <h2>Ready for your next set?</h2>
+            <p>
+              GymSense runs in your browser. Open it, allow the camera and
+              start lifting.
+            </p>
+          </div>
+          <a class="btn btn-primary btn-lg" href="https://gymsense-smartai.streamlit.app" target="_blank"
+            rel="noopener noreferrer">Try GymSense live</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <span>&copy; 2026 GymSense. Real-time AI gym coach.</span>
+      <span>Made With<span aria-label="❤️">&#10084;&#65039;</span>By Ankit</span>
       <a href="#top">Back to top</a>
-    </nav>
-
-    <div class="footer-credit">
-      <span>Made with</span>
-      <span class="heart" role="img" aria-label="love">❤️</span>
-      <span>by</span>
-      <span class="name">Ankit</span>
     </div>
-
-    <p class="footer-copy">
-      © 2026 <strong>AI GYM Trainer</strong>
-    </p>
   </footer>
 
-  <script src="script.js"></script>
+  <!-- Main script (at the end of body so the page loads first) -->
+  <script src="js/script.js"></script>
 </body>
 
 </html>
