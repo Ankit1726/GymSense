@@ -40,7 +40,7 @@
 
 ### ***Live Demo***
 
-🌐 **Web Application:** [Gymsense AI](https://sparkly-wisp-176a63.netlify.app)
+🌐 ***Web Application👉 [Gymsense AI](https://sparkly-wisp-176a63.netlify.app)***
 
 ---
 
